@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { SafeAreaView, Text, ImageBackground, StyleSheet, View } from 'react-native'
 
-import commomStyles from '../commomStyles'
+import commonStyles from '../commonStyles'
 import todayImage from '../../assets/imgs/today.jpg'
 
 import moment from 'moment'
@@ -16,7 +16,7 @@ export default class TaskList extends Component {
                     style={styles.background}>
                     <View style={styles.titleBar}>
                         <Text style={styles.title}>Hoje</Text>
-                        <Text>{today}</Text>
+                        <Text style={styles.subtitle}>{today}</Text>
                     </View>
                 </ImageBackground>
                 <View style={styles.taskList}>
@@ -42,7 +42,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     title: {
-        fontFamily: commomStyles.fontFamily,
+        fontFamily: commonStyles.fontFamily,
+        color: commonStyles.colors.secondary,
         fontSize: 50,
+        marginLeft: 20,
+        marginBottom: 20,
+    },
+    subtitle: {
+        fontFamily: commonStyles.fontFamily,
+        color: commonStyles.colors.secondary,
+        fontSize: 20,
+        marginLeft: 20,
+        marginBottom: 30,
     },
 });
