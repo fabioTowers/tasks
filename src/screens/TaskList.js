@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { SafeAreaView, Text, ImageBackground, StyleSheet, View } from 'react-native'
 
+import Task from '../components/Task'
+
 import commonStyles from '../commonStyles'
 import todayImage from '../../assets/imgs/today.jpg'
 
@@ -20,7 +22,12 @@ export default class TaskList extends Component {
                     </View>
                 </ImageBackground>
                 <View style={styles.taskList}>
-                    <Text>TaskList</Text>
+                    <Task desc="Tarefa #01" 
+                          estimateAt={new Date()}
+                          doneAt={new Date()}/>
+                    <Task desc="Tarefa #01" 
+                          estimateAt={new Date()}
+                          doneAt={null}/>
                 </View>
             </SafeAreaView>
         )
