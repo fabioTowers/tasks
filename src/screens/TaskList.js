@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SafeAreaView, Text, ImageBackground, StyleSheet, View } from 'react-native'
+import { SafeAreaView, Text, ImageBackground, StyleSheet, View, FlatList } from 'react-native'
 
 import Task from '../components/Task'
 
@@ -10,6 +10,70 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 
 export default class TaskList extends Component {
+    state = {
+        tasks: [{
+            id: Math.random(),
+            desc: 'Tarefa #01',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #02',
+            estimateAt: new Date(),
+            doneAt: null,
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #03',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #04',
+            estimateAt: new Date(),
+            doneAt: null,
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #05',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #06',
+            estimateAt: new Date(),
+            doneAt: null,
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #07',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #08',
+            estimateAt: new Date(),
+            doneAt: null,
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #09',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #10',
+            estimateAt: new Date(),
+            doneAt: null,
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #11',
+            estimateAt: new Date(),
+            doneAt: new Date(),
+        }, {
+            id: Math.random(),
+            desc: 'Tarefa #12',
+            estimateAt: new Date(),
+            doneAt: null,
+        }]
+    }
+
     render() {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return (
@@ -22,12 +86,9 @@ export default class TaskList extends Component {
                     </View>
                 </ImageBackground>
                 <View style={styles.taskList}>
-                    <Task desc="Tarefa #01" 
-                          estimateAt={new Date()}
-                          doneAt={new Date()}/>
-                    <Task desc="Tarefa #01" 
-                          estimateAt={new Date()}
-                          doneAt={null}/>
+                    <FlatList data={this.state.tasks}
+                              keyExtractor={item => `${item.id}`}
+                              renderItem={({item}) => <Task {...item}/>} />
                 </View>
             </SafeAreaView>
         )
@@ -36,13 +97,13 @@ export default class TaskList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1
+        flex: 1
     },
     background: {
-        flexGrow: 3
+        flex: 3
     },
     taskList: {
-        flexGrow: 7
+        flex: 7
     },
     titleBar: {
         flex: 1,
