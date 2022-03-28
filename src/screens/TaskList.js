@@ -21,57 +21,18 @@ export default class TaskList extends Component {
             desc: 'Tarefa #02',
             estimateAt: new Date(),
             doneAt: null,
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #03',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #04',
-            estimateAt: new Date(),
-            doneAt: null,
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #05',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #06',
-            estimateAt: new Date(),
-            doneAt: null,
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #07',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #08',
-            estimateAt: new Date(),
-            doneAt: null,
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #09',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #10',
-            estimateAt: new Date(),
-            doneAt: null,
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #11',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #12',
-            estimateAt: new Date(),
-            doneAt: null,
         }]
+    }
+
+    toggleTask = taskId => {
+        const tasks = [...this.state.tasks]
+        tasks.forEach(task => {
+            if (task.id === taskId) {
+                task.doneAt = (task.doneAt ? null : new Date())
+            }
+        })
+
+        this.setState({ tasks })
     }
 
     render() {
@@ -88,7 +49,7 @@ export default class TaskList extends Component {
                 <View style={styles.taskList}>
                     <FlatList data={this.state.tasks}
                               keyExtractor={item => `${item.id}`}
-                              renderItem={({item}) => <Task {...item}/>} />
+                              renderItem={({item}) => <Task {...item} toggleTask={this.toggleTask}/>} />
                 </View>
             </SafeAreaView>
         )
