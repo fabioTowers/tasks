@@ -10,10 +10,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import AddTask from './AddTask'
 
 export default class TaskList extends Component {
     state = {
         showDoneTasks: true,
+        showAddTask: true,
         visibleTasks: [],
         tasks: [{
             id: Math.random(),
@@ -63,6 +65,8 @@ export default class TaskList extends Component {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return (
             <SafeAreaView style={styles.container}>
+                <AddTask isVisible={this.state.showAddTask}
+                    onCancel={() => this.setState({ showAddTask: false })} />
                 <ImageBackground source={todayImage}
                     style={styles.background}>
                     <View  style={styles.iconBar}>
