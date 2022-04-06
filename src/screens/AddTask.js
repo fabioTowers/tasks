@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { 
+import {
+    Platform,
     Modal, 
     View, 
     StyleSheet, 
@@ -8,10 +9,11 @@ import {
     TouchableOpacity, 
     TextInput 
 } from 'react-native'
+import moment from 'moment'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import commonStyles from '../commonStyles'
 
-const initialState = { desc: '', date: new Date() }
+const initialState = { desc: '', date: new Date(), showDatePicker: false }
 
 export default class AddTask extends Component {
 
@@ -20,8 +22,26 @@ export default class AddTask extends Component {
     }
 
     getDatePicker = () => {
-        return <DateTimePicker value={this.state.date} onChange={(_, date) => this.setState({ date })} 
-                    mode="date"/>
+        let datePicker = <DateTimePicker value={new Date()} 
+            onChange={(_, date) => this.setState({ date, showDatePicker: false })} 
+            mode="date" display="spinner" />
+
+        const dateString = moment(this.state.date).format('dddd, D [de] MMMM [de] YYYY')
+
+        if (Platform.OS === 'android') {
+            datePicker = (
+                <View>
+                    <TouchableOpacity onPress={() => this.setState({ showDatePicker: true })}>
+                        <Text style={styles.date}>
+                            {dateString}
+                        </Text>
+                    </TouchableOpacity>
+                    {this.state.showDatePicker && datePicker}
+                </View>
+            )
+        }
+        
+        return datePicker
     }
 
     render() {
@@ -92,5 +112,10 @@ const styles = StyleSheet.create({
         margin: 20,
         marginRight: 30,
         color: commonStyles.colors.today,
+    },
+    date: {
+        fontFamily: commonStyles.fontFamily,
+        fontSize: 20,
+        marginLeft: 15,
     },
 })
