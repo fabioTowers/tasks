@@ -27,10 +27,21 @@ export default props => {
             </TouchableOpacity>
         )
     }
+
+    const getLeftContent = () => {
+        return (
+            <View style={styles.left}>
+                <Icon name="trash" size={20} color='#FFF' style={styles.excludeIcon} />
+                <Text style={styles.excludeText} >Excluir</Text>
+            </View>
+        )
+    }
     
     return (
         <GestureHandlerRootView>
-        <Swipeable renderRightActions={getRightContent} >
+        <Swipeable
+            renderRightActions={getRightContent} 
+            renderLeftActions={getLeftContent} >
             <View style={styles.container}>
                 <TouchableWithoutFeedback
                     onPress={() => props.toggleTask(props.id)}>
@@ -70,6 +81,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         alignItems: 'center',
         paddingVertical: 10,
+        backgroundColor: '#FFF',
     },
     checkContainer: {
         width: '20%',
@@ -107,5 +119,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingHorizontal: 20,
+    },
+    left: {
+        flex: 1,
+        backgroundColor: 'red',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    excludeText: {
+        fontFamily: commonStyles.fontFamily,
+        color: '#FFF',
+        fontSize: 20,
+        margin: 10,
+    },
+    excludeIcon: {
+        marginLeft: 10,
     },
 })
