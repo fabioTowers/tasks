@@ -10,37 +10,33 @@ import {
     Alert,
 } from 'react-native'
 
-import Task from '../components/Task'
-
-import commonStyles from '../commonStyles'
-import todayImage from '../../assets/imgs/today.jpg'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import moment from 'moment'
 import 'moment/locale/pt-br'
+
+import Task from '../components/Task'
 import AddTask from './AddTask'
+import commonStyles from '../commonStyles'
+import todayImage from '../../assets/imgs/today.jpg'
+
+const initialState = {
+    showDoneTasks: true,
+    showAddTask: false,
+    visibleTasks: [],
+    tasks: []
+}
 
 export default class TaskList extends Component {
     state = {
-        showDoneTasks: true,
-        showAddTask: false,
-        visibleTasks: [],
-        tasks: [{
-            id: Math.random(),
-            desc: 'Tarefa #01',
-            estimateAt: new Date(),
-            doneAt: new Date(),
-        }, {
-            id: Math.random(),
-            desc: 'Tarefa #02',
-            estimateAt: new Date(),
-            doneAt: null,
-        }]
+        ...initialState
     }
 
-    componentDidMount = () => {
-        this.filterTasks()
+    componentDidMount = async () => {
+        const stateString = await AsyncStorage.getItem('tasksState')
+        const state = JSON.parse(stateString) || initialState
+        this.setState(state, this.filterTasks)
     }
 
     tooggleFilter = () => {
@@ -68,6 +64,7 @@ export default class TaskList extends Component {
         }
 
         this.setState({ visibleTasks })
+        AsyncStorage.setItem('tasksState', JSON.stringify(this.state))
     }
 
     addTask = newTask => {
