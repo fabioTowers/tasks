@@ -19,7 +19,7 @@ export default class Auth extends Component {
         email: '',
         password: '',
         confirmPassword: '',
-        stageNew: true,
+        stageNew: false,
     }
 
     render() {
@@ -48,6 +48,15 @@ export default class Auth extends Component {
                         onChangeText={password => this.setState({ password })}
                         secureTextEntry={true}
                     />
+                    {this.state.stageNew &&
+                        <TextInput 
+                            placeholder='Confirmar senha' 
+                            value={this.state.confirmPassword} 
+                            style={styles.input} 
+                            onChangeText={confirmPassword => this.setState({ confirmPassword })}
+                            secureTextEntry={true}
+                        />
+                    }
                     <TouchableOpacity>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>Entrar</Text>
