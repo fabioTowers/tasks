@@ -19,7 +19,7 @@ export default class Auth extends Component {
         email: '',
         password: '',
         confirmPassword: '',
-        stageNew: false,
+        stageNew: true,
     }
 
     render() {
@@ -59,7 +59,9 @@ export default class Auth extends Component {
                     }
                     <TouchableOpacity>
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>Entrar</Text>
+                            <Text style={styles.buttonText}>
+                                {this.state.stageNew ? 'Registre-se' : 'Entrar'}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
