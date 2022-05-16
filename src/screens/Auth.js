@@ -19,7 +19,7 @@ export default class Auth extends Component {
         email: '',
         password: '',
         confirmPassword: '',
-        stageNew: true,
+        stageNew: false,
     }
 
     render() {
@@ -27,6 +27,9 @@ export default class Auth extends Component {
             <ImageBackground source={backgroundImage} style={styles.background}>
                 <Text style={styles.title}>Tasks</Text>
                 <View style={styles.formContainer}>
+                    <Text style={styles.subtitle}>
+                        {this.state.stageNew ? 'Crie sua conta' : 'Informe seus dados'}
+                    </Text>
                     {this.state.stageNew &&
                         <TextInput 
                             placeholder='Nome' 
@@ -81,6 +84,13 @@ const styles = StyleSheet.create({
         fontFamily: commonStyles.fontFamily,
         color: commonStyles.colors.secondary,
         fontSize: 70,
+        marginBottom: 10,
+    },
+    subtitle: {
+        fontFamily: commonStyles.fontFamily,
+        color: '#FFF',
+        fontSize: 20,
+        textAlign: 'center',
         marginBottom: 10,
     },
     input: {
