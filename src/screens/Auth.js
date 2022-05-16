@@ -46,6 +46,7 @@ export default class Auth extends Component {
                         value={this.state.password} 
                         style={styles.input} 
                         onChangeText={password => this.setState({ password })}
+                        secureTextEntry={true}
                     />
                     <TouchableOpacity>
                         <View style={styles.button}>
