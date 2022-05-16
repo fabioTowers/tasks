@@ -15,8 +15,11 @@ import commonStyles from '../commonStyles'
 export default class Auth extends Component {
 
     state = {
+        name: '',
         email: '',
         password: '',
+        confirmPassword: '',
+        stageNew: true,
     }
 
     render() {
@@ -24,6 +27,14 @@ export default class Auth extends Component {
             <ImageBackground source={backgroundImage} style={styles.background}>
                 <Text style={styles.title}>Tasks</Text>
                 <View style={styles.formContainer}>
+                    {this.state.stageNew &&
+                        <TextInput 
+                            placeholder='Nome' 
+                            value={this.state.name} 
+                            style={styles.input} 
+                            onChangeText={name => this.setState({ name })}
+                        />
+                    }
                     <TextInput 
                         placeholder='E-mail' 
                         value={this.state.email} 
