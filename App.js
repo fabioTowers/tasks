@@ -1,6 +1,7 @@
 import TaskList from './src/screens/TaskList';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import Auth from './src/screens/Auth';
 
 export default function App() {
 
@@ -13,6 +14,9 @@ export default function App() {
   }
 
   return (
-    <TaskList />
+    <>
+      {/*<TaskList />*/}
+      <Auth />
+    </>
   );
 }
