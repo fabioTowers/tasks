@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Navigator from './src/Navigator';
