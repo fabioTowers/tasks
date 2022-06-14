@@ -21,6 +21,9 @@ import Task from '../components/Task'
 import AddTask from './AddTask'
 import commonStyles from '../commonStyles'
 import todayImage from '../../assets/imgs/today.jpg'
+import tomorrowImage from '../../assets/imgs/tomorrow.jpg'
+import weekImage from '../../assets/imgs/week.jpg'
+import monthImage from '../../assets/imgs/month.jpg'
 
 const initialState = {
     showDoneTasks: true,
@@ -108,6 +111,15 @@ export default class TaskList extends Component {
         }
     }
 
+    getImage = () => {
+        switch(this.props.daysAhead) {
+            case 0: return todayImage
+            case 1: return tomorrowImage
+            case 7: return weekImage
+            default: return monthImage
+        }
+    }
+
     render() {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return (
@@ -115,7 +127,7 @@ export default class TaskList extends Component {
                 <AddTask isVisible={this.state.showAddTask}
                     onCancel={() => this.setState({ showAddTask: false })} 
                     onSave={this.addTask} />
-                <ImageBackground source={todayImage}
+                <ImageBackground source={this.getImage()}
                     style={styles.background}>
                     <View  style={styles.iconBar}>
                         <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
