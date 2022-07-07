@@ -9,29 +9,17 @@ import TaskList from './screens/TaskList'
 import Menu from './screens/Menu'
 import commonStyles from './commonStyles'
 
-const menuConfig = {
-    initialRouteName: 'Today',
-    contentComponent: Menu,
-    contentOptions: {
-        labelStyle: {
-            fontFamily: commonStyles.fontFamily,
-            fontWeight: 'normal',
-            fontSize: '20',
-        },
-        activeLabelStyle: {
-            color: '#080',
-            fontWeight: 'bold',
-        },
-    },
-}
-
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 
 const DrawerNavigator = props => {
+
+    const email = props.route.params.email
+    const name = props.route.params.name
+
     return (
         <Drawer.Navigator
-            drawerContent={(props) => <Menu {...props} />}
+            drawerContent={(props) => <Menu {...props} email={email} name={name} />}
             screenOptions={{
                 headerShown: false,
                 drawerLabelStyle: {

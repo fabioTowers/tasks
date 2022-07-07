@@ -4,8 +4,7 @@ import {
     Text, 
     StyleSheet, 
     View, 
-    TouchableOpacity, 
-    Alert,
+    TouchableOpacity,
 } from 'react-native'
 
 import axios from 'axios'
@@ -61,7 +60,7 @@ export default class Auth extends Component {
             })
 
             axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Home', res.data)
         } catch (e) {
             showError(e)
         }
